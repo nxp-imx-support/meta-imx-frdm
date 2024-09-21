@@ -27,6 +27,7 @@ EULA=$EULA DISTRO=$DISTRO MACHINE=$MACHINE . ./imx-setup-release.sh $@
 
 echo "# layers for i.MX FRDM" >> conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-imx-frdm/meta-imx-bsp\"" >> conf/bblayers.conf
+echo "BBLAYERS += \"\${BSPDIR}/sources/meta-imx-frdm/meta-nxp-demo-experience\"" >> conf/bblayers.conf
 
 echo ""
 echo "i.MX FRDM setup complete and it can generate Yocto images now."
