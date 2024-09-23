@@ -1,0 +1,10 @@
+NXP Software Content Register
+
+Release:                   i.MX FRDM Software release
+Version:                   imx-frdm-1.0
+Outgoing License:          LA_OPT_NXP_Software_License v57 July 2024 - Additional distribution license granted - Section 2.3 applies
+License File:              LICENSE.txt
+Type of content:           Yocto recipe files
+Description and comments:  Yocto recipes for i.MX FRDM
+Release Location:          https://github.com/nxp-imx-support/meta-imx-frdm
+origin:                    NXP (proprietary)
