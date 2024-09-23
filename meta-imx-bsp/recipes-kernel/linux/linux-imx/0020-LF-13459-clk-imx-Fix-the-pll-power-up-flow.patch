@@ -1,0 +1,66 @@
+From 51f9c032d509c5f86a627751df934bf251b0770e Mon Sep 17 00:00:00 2001
+From: Jacky Bai <ping.bai@nxp.com>
+Date: Tue, 20 Aug 2024 16:06:33 +0800
+Subject: [PATCH 20/20] LF-13459 clk: imx: Fix the pll power up flow
+
+current PLL power up flow can be simplified as below:
+  1. writel to set the PLL POWERUP bit;
+  2. readl_poll_timeout to check the PLL lock bit:
+     a). timeout = ktime_add_us(ktime_get(), timeout_us);
+     b). readl the pll the lock reg;
+     c). check if the pll lock bit ready
+     d). check if timeout
+
+But in some corner case, both the writel in step 1 and readl in
+step 2 will be blocked by other bus transaction in the SoC for a
+long time, then may have chance that the pll lock bit is not ready
+when readl done but the timeout happens. readl_poll_timeout will
+err return due to timeout. To avoid such unexpected failure,
+we can read back the 'POWERUP' control reg to make sure the writel
+has been done in HW reg before we can read the PLL lock bit to
+check the PLL lock status.
+
+Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
+---
+ drivers/clk/imx/clk-fracn-gppll.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/clk/imx/clk-fracn-gppll.c b/drivers/clk/imx/clk-fracn-gppll.c
+index 439091409438..e8fa9170c68f 100644
+--- a/drivers/clk/imx/clk-fracn-gppll.c
++++ b/drivers/clk/imx/clk-fracn-gppll.c
+@@ -264,7 +264,10 @@ static int clk_fracn_gppll_set_rate(struct clk_hw *hw, unsigned long drate,
+ 
+ 	/* Enable Powerup */
+ 	tmp |= POWERUP_MASK;
+-	writel_relaxed(tmp, pll->base + PLL_CTRL);
++	writel(tmp, pll->base + PLL_CTRL);
++
++	/* Make sure the write has done in HW reg */
++	readl_relaxed(pll->base + PLL_CTRL);
+ 
+ 	/* Wait Lock */
+ 	ret = clk_fracn_gppll_wait_lock(pll);
+@@ -302,13 +305,16 @@ static int clk_fracn_gppll_prepare(struct clk_hw *hw)
+ 	val |= POWERUP_MASK;
+ 	writel_relaxed(val, pll->base + PLL_CTRL);
+ 
+-	val |= CLKMUX_EN;
+-	writel_relaxed(val, pll->base + PLL_CTRL);
++	/* Make sure the write has done in HW reg */
++	readl_relaxed(pll->base + PLL_CTRL);
+ 
+ 	ret = clk_fracn_gppll_wait_lock(pll);
+ 	if (ret)
+ 		return ret;
+ 
++	val |= CLKMUX_EN;
++	writel_relaxed(val, pll->base + PLL_CTRL);
++
+ 	val &= ~CLKMUX_BYPASS;
+ 	writel_relaxed(val, pll->base + PLL_CTRL);
+ 
+-- 
+2.25.1
+

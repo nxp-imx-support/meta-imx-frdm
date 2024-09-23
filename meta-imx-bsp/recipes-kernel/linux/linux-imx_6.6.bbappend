@@ -14,4 +14,11 @@ SRC_URI += " \
         file://0011-arm64-dts-add-pwm-function-of-the-LED.patch \
         file://0012-arm64-dts-add-imx93-11x11-frdm-8mic.dts.patch \
         file://0013-arm64-dts-add-imx93-11x11-frdm-lpuart.dts.patch \
+        file://0014-arm64-dts-add-imx91-frdm-dts-files.patch \
+        file://0015-arm64-dts-add-imx91-11x11-frdm-tianma-wvga-panel-dts.patch \
+        file://0016-arm64-dts-add-imx91-11x11-frdm-mt9m114.dts.patch \
+        file://0017-arm64-dts-add-imx91-11x11-frdm-aud-hat-dts.patch \
+        file://0018-arm64-dts-add-imx91-11x11-frdm-8mic.dts-and-fix-imx9.patch \
+        file://0019-arm64-dts-add-imx91-11x11-frdm-lpuart.dts.patch \
+        file://0020-LF-13459-clk-imx-Fix-the-pll-power-up-flow.patch \
 "
