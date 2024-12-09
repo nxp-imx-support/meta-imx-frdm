@@ -1,0 +1,71 @@
+From 019b3de2368f3854e46ed7b1123c32e7d0b00fab Mon Sep 17 00:00:00 2001
+From: Junmeng Li <junmeng.li_1@nxp.com>
+Date: Wed, 27 Nov 2024 18:41:16 +0100
+Subject: [PATCH] Add IW610 15.4 firmware calibration file and use it as
+ default
+
+Signed-off-by: junmengli <junmeng.li_1@nxp.com>
+---
+ .../sdiw610_WlanCalData_ext.conf              | 31 +++++++++++++++++++
+ nxp/wifi_mod_para.conf                        |  4 +--
+ 2 files changed, 33 insertions(+), 2 deletions(-)
+ create mode 100644 nxp/FwImage_IW610_SD/sdiw610_WlanCalData_ext.conf
+
+diff --git a/nxp/FwImage_IW610_SD/sdiw610_WlanCalData_ext.conf b/nxp/FwImage_IW610_SD/sdiw610_WlanCalData_ext.conf
+new file mode 100644
+index 0000000..74093e0
+--- /dev/null
++++ b/nxp/FwImage_IW610_SD/sdiw610_WlanCalData_ext.conf
+@@ -0,0 +1,31 @@
++01 00
++0F 00 D0 01
++ 00 20 DE 0F 00 00 00 20 FF FF 40 00 91 00 26 12
++ 00 00 00 10 00 04 4A 06 02 00 00 3F 01 00 00 27
++ 00 8C 86 61 00 00 00 AC FF F1 08 00 00 05 01 38
++ 3B 2E 14 26 04 30 53 E3 0B 92 7C 72 00 0B 01 3A
++ 3B 3E 14 27 04 30 53 E3 0B 82 74 71 44 28 01 0A
++ 3A 3D F4 2A 03 60 1B D2 0B 42 24 66 44 38 01 08
++ 3A 4D F8 2B 03 40 17 D1 0A E2 1C 63 48 6C 01 00
++ 3A 7E 04 2E 03 A0 2B D6 0B 72 34 69 48 84 01 FE
++ 3A 7E 04 2F 03 80 27 D6 0A E2 28 65 4C 99 01 F9
++ 3A 8E 08 30 03 70 27 D8 0B 02 28 65 4C A5 01 FB
++ 3A 7E 04 2D 03 40 1B D5 0A C2 18 62 00 18 A5 53
++ 00 00 00 C4 39 06 75 0D BC 55 1F 97 3D 16 3D 21
++ 41 49 AE BC 00 70 A7 5A 00 00 01 34 00 07 02 04
++ 00 02 00 00 00 02 00 00 00 00 00 00 FF FF 00 02
++ 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 02
++ 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
++ 00 00 00 00 00 00 00 00 FF FF 00 20 00 02 00 02
++ 00 02 00 02 00 02 00 02 00 02 00 02 00 02 00 02
++ 00 02 00 02 00 02 00 02 00 02 00 02 00 02 00 02
++ 00 02 00 02 00 10 31 63 00 00 01 44 F1 11 00 01
++ 00 00 0D 08 00 2C 75 4B 00 00 01 70 FF FF 04 00
++ 00 C6 C6 03 00 00 00 00 00 DB DB 47 00 00 00 00
++ 00 E1 E1 4B 00 00 00 00 00 DD DD 4F 00 00 00 00
++ 00 1C 88 62 00 00 01 8C FF FF 04 00 00 00 84 21
++ 44 00 84 21 48 00 84 21 4C 00 84 21 00 1C 5D 37
++ 00 00 01 A8 04 0D 91 01 00 00 00 28 00 01 C2 00
++ 05 7B CE 5F 00 00 78 F5 00 18 A9 68 00 00 01 C0
++ 00 00 00 01 FE 7B CE 5E 78 F5 05 FF 00 00 00 00
++ 00 10 8B 64 FF FF FF FF 00 02 00 01 00 02 00 01
+diff --git a/nxp/wifi_mod_para.conf b/nxp/wifi_mod_para.conf
+index cfdc16f..183d9aa 100644
+--- a/nxp/wifi_mod_para.conf
++++ b/nxp/wifi_mod_para.conf
+@@ -159,11 +159,11 @@ SD8801 = {
+ SDIW610 = {
+ 	cfg80211_wext=0xf
+ 	max_vir_bss=1
+-	cal_data_cfg=none
++	cal_data_cfg=nxp/sdiw610_WlanCalData_ext.conf
+ 	ps_mode=1
+ 	auto_ds=1
+ 	host_mlme=1
+-	fw_name=nxp/sduart_iw610.bin.se
++	fw_name=nxp/sduartspi_iw610.bin.se
+ }
+ 
+ SDIW612 = {
+-- 
+2.34.1
+
