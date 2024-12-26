@@ -131,7 +131,7 @@ Change the current directory to the top directory of the Yocto source code and e
 
 ```
 #For i.MX93 FRDM:
-$: MMACHINE=imx93frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx93
+$: MACHINE=imx93frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx93
 ```
 
 Run the command below to generate Yocto images:
