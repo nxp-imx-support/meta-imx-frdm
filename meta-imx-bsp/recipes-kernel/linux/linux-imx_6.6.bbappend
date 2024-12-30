@@ -43,4 +43,14 @@ SRC_URI += " \
         file://0040-arm64-dts-imx8mp-frdm-update-waveshare-panel-node.patch \
         file://0041-drm-panel-remove-wavesahre-node-in-simple-panel.patch \
         file://0042-arm64-dts-imx8mp-frdm-add-imx8mp-frdm-iw612-otbr-dts.patch \
+        file://0043-arm64-dts-Add-dts-for-FRDM-IMX91S-board.patch \
+        file://0044-arm64-dts-Add-imx91-11x11-frdm-imx91s-aud-hat-dts.patch \
+        file://0045-arm64-dts-Add-imx91-11x11-frdm-imx91s-8mic.dts.patch \
+        file://0046-arm64-dts-Add-imx91-11x11-frdm-imx91s-tianma-wvga-pa.patch \
+        file://0047-arm64-dts-Add-imx91-11x11-frdm-imx91s-fec.dts.patch \
+        file://0048-media-imx-parallel-Fix-OV5640-DVP-mode-capture-color.patch \
+        file://0049-arm64-dts-Add-imx91-11x11-frdm-imx91s-mt9m114.dts.patch \
+        file://0050-arm64-dts-Add-imx91-11x11-frdm-imx91s-ld.dts.patch \
+        file://0051-arm64-dts-Add-imx91-11x11-frdm-imx91s-lpuart.dts.patch \
+        file://0052-arm64-dts-Fix-connector-descriptions-in-FRDM-IMX-lpu.patch \
 "

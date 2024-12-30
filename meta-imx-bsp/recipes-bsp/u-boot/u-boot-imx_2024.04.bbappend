@@ -7,6 +7,8 @@ SRC_URI += " \
         file://0004-imx-imx93-91-frdm-add-board-version-print.patch \
         file://0005-imx-add-i.MX8MP-FRDM-board-support.patch \
         file://0006-imx-FRDM-IMX8MP-Use-green-led-instead-of-blue.patch \
+        file://0007-imx-imx91_frdm_imx91s-Add-basic-board-support.patch \
+        file://0008-imx-imx91_frdm_imx91s-Add-SPI-NAND-boot-support.patch \
 "
 
 SRC_URI += "${@bb.utils.contains_any('MACHINE', "imx8mpfrdm", 'file://uboot-config/0001-imx8mp-set-os08a20-dtb.cfg', '', d)}"
