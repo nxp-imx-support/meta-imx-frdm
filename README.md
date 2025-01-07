@@ -6,6 +6,7 @@ This repository contains Yocto recipes to support i.MX FRDM boards, which is bas
 The following boards were tested in this release:
 
         * NXP i.MX 93 FRDM (imx93frdm)
+        * NXP i.MX 91 FRDM (imx91frdm)
 
 
 Quick Start Guide
@@ -31,13 +32,16 @@ If errors on repo init, remove the .repo directory and try repo init again.
 $: cd ./sources
 $: git clone https://github.com/nxp-imx-support/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-1.0
+$: git checkout imx-frdm-2.0
 ```
 
 Change to the top directory of the Yocto source code and execute the command below to setup environment for build.
 ```
 #For i.MX93 FRDM
 $: MACHINE=imx93frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx93
+
+#For i.MX91 FRDM
+$: MACHINE=imx91frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx91
 ```
 
 Run the command below to generate Yocto images:
@@ -78,17 +82,17 @@ Using UUU:
 1. Connect a USB cable from a computer to the USB OTG/TYPE C port on the board for download link.
 2. Connect a USB cable from the OTG-to-UART port to the computer for console output.
 3. Open a Terminal emulator program.
-4. Set the boot pin to serial download mode. See "FRDM-IMX93 Board User Manual" for detail info.
+4. Set the boot pin to serial download mode.
 
-To use the UUU for i.MX93 FRDM:
+To burn single-boot image and rootfs with UUU:
 
 • To burn single-boot image and rootfs to SD Card, run the following command:
 ```
-uuu -b sd_all imx-boot-imx93frdm-sd.bin-flash_singleboot <rootfs.wic.zst>
+uuu -b sd_all <bootloader> <image_name>.wic.zst
 ```
 • To burn single-boot image and rootfs to eMMC, run the following command:
 ```
-uuu -b emmc_all imx-boot-imx93frdm-sd.bin-flash_singleboot <rootfs.wic.zst>
+uuu -b emmc_all <bootloader> <image_name>.wic.zst
 ```
 
 More information about i.MX Linux BSP release, which can be found at [NXP official website](http://www.nxp.com/imxlinux).
@@ -96,7 +100,7 @@ More information about i.MX Linux BSP release, which can be found at [NXP offici
 
 Matter support:
 ---------------
-This repository also contains Yocto recipes to add  matter support for FRDM i.MX93 based on i.MX Matter 2024 Q3.
+This repository also contains Yocto recipes to add matter support for i.MX FRDM platform based on i.MX Matter 2024 Q3.
 
 Here are steps on how to build the Yocto image with integrated OpenThread Border Router.
 
@@ -123,7 +127,7 @@ $: git checkout imx_matter_2024_q3
 $: cd ${MY_YOCTO}/sources
 $: git clone https://github.com/nxp-imx-support/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-1.0
+$: git checkout imx-frdm-2.0
 ```
 
 Run i.MX Linux Yocto Project Setup:
@@ -132,6 +136,9 @@ Change the current directory to the top directory of the Yocto source code and e
 ```
 #For i.MX93 FRDM:
 $: MACHINE=imx93frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx93
+
+#For i.MX91 FRDM:
+$: MACHINE=imx91frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx91
 ```
 
 Run the command below to generate Yocto images:
@@ -147,15 +154,20 @@ Related Documentation:
 
 Information about FRDM-IMX93 board can be found at [FRDM-IMX93 website](https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX93).
 
-• FRDM-IMX93 Quick Start Guide
+Information about FRDM-IMX91 board can be found at [FRDM-IMX91 website](https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91).
 
-• FRDM-IMX93 Board User Manual
+• [FRDM-IMX93 Quick Start Guide](https://www.nxp.com/document/guide/getting-started-with-frdm-imx93:GS-FRDM-IMX93)
 
-• i.MX FRDM Software User Guide
+• [FRDM-IMX93 Board User Manual](https://www.nxp.com/doc/UM12181)
+
+• [FRDM-IMX91 Quick Start Guide](https://www.nxp.com/document/guide/getting-started-with-frdm-imx91-development-board:GS-FRDM-IMX91)
+
+• [FRDM-IMX91 Board User Manual](https://www.nxp.com/doc/UM12273)
+
+• [i.MX FRDM Software User Guide](https://www.nxp.com/doc/UG10195)
 
 
 More information about i.MX Linux BSP release, which can be found at [NXP official website](http://www.nxp.com/imxlinux).
-
 Here are some documents for reference:
 
 • [i.MX Yocto Project User's Guide](https://www.nxp.com/docs/en/user-guide/IMX_YOCTO_PROJECT_USERS_GUIDE.pdf)
