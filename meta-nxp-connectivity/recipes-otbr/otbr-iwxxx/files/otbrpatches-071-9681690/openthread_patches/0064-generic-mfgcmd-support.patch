@@ -1,0 +1,149 @@
+/*
+*  Copyright (c) 2020, The OpenThread Authors.
+*  Copyright 2023-2024 NXP
+*  All rights reserved.
+*
+*  Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions are met:
+*  1. Redistributions of source code must retain the above copyright
+*     notice, this list of conditions and the following disclaimer.
+*  2. Redistributions in binary form must reproduce the above copyright
+*     notice, this list of conditions and the following disclaimer in the
+*     documentation and/or other materials provided with the distribution.
+*  3. Neither the name of the copyright holder nor the
+*     names of its contributors may be used to endorse or promote products
+*     derived from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+*  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+*  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+*  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+*  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+*  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+*  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+*  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+*  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+*  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+*  POSSIBILITY OF SUCH DAMAGE.
+*/
+
+/*
+* Header for patch information.
+* Description           : Add Generic command support in MFG command.
+* Version               : v001
+* Mandatory/Optional    : Optional
+* Impact if not applied : Generic command support will not be there.
+*/
+
+diff --git a/src/posix/platform/daemon.cpp b/src/posix/platform/daemon.cpp
+index 269a9f8c2..e807364ee 100644
+--- a/src/posix/platform/daemon.cpp
++++ b/src/posix/platform/daemon.cpp
+@@ -98,9 +98,12 @@ extern "C"
+ #define MFG_CMD_PHY_TX_TEST_PSDU 0x39     //57
+ #define MFG_CMD_PHY_RX_TX_ACK_TEST 0x3A   //58
+ #define MFG_CMD_SET_GENERIC_PARAM 0x3B    //59
+-
++#define MFG_CMD_GENERIC           0xFF    //255
+ #define MAX_VERSION_STRING_SIZE 128 //< Max size of version string
+ 
++#define OT_NXP_PLAT_MFG_FIRST_ANNEX_ID 55
++#define OT_NXP_PLAT_MFG_LAST_ANNEX_ID  108
++
+ static uint8_t mfgEnable = 0;
+ 
+ // 15.4_INDEPENDENT_RESET
+@@ -356,7 +359,6 @@ otError ProcessMfgCommands(void *aContext, uint8_t aArgsLength, char *aArgs[])
+     if ((aArgsLength > 0) && (mfgEnable == 1))
+     {
+         cmdId = (uint8_t)atoi(aArgs[0]);
+-
+         switch (cmdId)
+         {
+         case MFG_CMD_GET_SET_CHANNEL: // get channel
+@@ -539,9 +541,82 @@ otError ProcessMfgCommands(void *aContext, uint8_t aArgsLength, char *aArgs[])
+         }
+         break;
+ 
+-        default:
+-            error = OT_ERROR_NOT_IMPLEMENTED;
+-            break;
++	case MFG_CMD_GENERIC:
++	{
++		uint8_t Action       = (uint8_t) atoi(aArgs[1]);
++		uint8_t AnnexVal     = (uint8_t) atoi(aArgs[2]);
++		char *Annexdata      = aArgs[3];
++		uint8_t DataLen      = strlen(Annexdata);
++		uint8_t PayloadLen   = 0;
++		uint8_t payload_generic_cmd [256];
++
++		if (Action == MFG_CMD_ACTION_SET)
++		{
++			if ( (AnnexVal < OT_NXP_PLAT_MFG_FIRST_ANNEX_ID) && (AnnexVal > OT_NXP_PLAT_MFG_LAST_ANNEX_ID))
++			{
++				otLogInfoPlat("The Annex Type limit set is out of range");
++			}
++			else if (DataLen %2 != 0)
++			{
++				otLogInfoPlat("The Annex Data input format allows only in Bytes format.");
++			}
++			else if ((DataLen > 2) && (Annexdata[0] == '0') && (Annexdata[1] == 'x'))
++			{
++				DataLen   -= 2;
++				Annexdata += 2;
++
++				DataLen    = DataLen / 2; //Data length in bytes.
++				PayloadLen = DataLen + 6;
++
++				payload_generic_cmd [0] = PayloadLen - 1 ;            // size of the payload
++				payload_generic_cmd [1] = MFG_CMD_GENERIC;            // command id
++				payload_generic_cmd [2] = Action;                     // action set or get
++				payload_generic_cmd [3] = 0;                          // return value
++				payload_generic_cmd [4] = AnnexVal;                   // sub commands. for Annex100 it is 100.
++				payload_generic_cmd [5] = DataLen;                    // Annex data len
++
++				for ( uint8_t index = 0; index < DataLen; index++)
++				{
++					char byte_str[3] = {Annexdata[ 2* index], Annexdata[ 2* index + 1], '\0'};
++					payload_generic_cmd[6 + index] = (unsigned int)strtoul(byte_str, NULL,16);
++				}
++
++				otPlatRadioMfgCommand((otInstance*)aContext, (uint8_t*)payload_generic_cmd, PayloadLen , &outputLen);
++
++				for(idx = 0; idx < outputLen; idx++)
++				{
++					otCliOutputFormat("%d ", payload_generic_cmd[idx]);
++				}
++				otCliOutputFormat("\r\n");
++
++				if (payload_generic_cmd[3] == 0)
++				{
++					otLogInfoPlat("Setting Annex%d success", AnnexVal);
++					error = OT_ERROR_NONE;
++				}
++				else if (payload_generic_cmd[3] == 0xff)
++				{
++					error = OT_ERROR_INVALID_ARGS;
++				}
++				else
++				{
++					error = OT_ERROR_FAILED;
++				}
++			}
++			else
++			{
++				 otLogInfoPlat("The Annex Data input format allows only Hexadecimal.");
++			}
++		}
++		else if (Action == MFG_CMD_ACTION_GET)
++		{
++			error = OT_ERROR_NOT_IMPLEMENTED;
++		}
++	}
++	break;
++    default:
++        error = OT_ERROR_NOT_IMPLEMENTED;
++        break;
+         }
+     }
+ 
