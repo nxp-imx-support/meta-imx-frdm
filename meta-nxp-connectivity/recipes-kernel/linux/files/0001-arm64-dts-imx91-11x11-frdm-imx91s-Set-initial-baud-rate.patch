@@ -1,0 +1,28 @@
+From 3cacb0d8634e8d3c427e40032858c9ffedeaeaa9 Mon Sep 17 00:00:00 2001
+From: Lei Xu <lei.xu@nxp.com>
+Date: Fri, 7 Feb 2025 17:25:46 +0800
+Subject: [PATCH] arm64: dts: imx91-11x11-frdm-imx91s: Set initial baud rate to 3
+ Mbps for Bluetooth
+
+Align the initial baud rate to 3 Mbps with WCS Q4-24-R3-p43 IW610 FW.
+
+Signed-off-by: Lei Xu <lei.xu@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx91-11x11-frdm-imx91s.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-imx91s.dts b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-imx91s.dts
+index c4329fa5ed8f..b63c6f7312dc 100755
+--- a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-imx91s.dts
++++ b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-imx91s.dts
+@@ -585,6 +585,7 @@ &lpuart5 {
+ 
+ 	bluetooth {
+ 		compatible = "nxp,88w8987-bt";
++		fw-init-baudrate = <3000000>;
+ 	};
+ };
+ 
+-- 
+2.25.1
+
