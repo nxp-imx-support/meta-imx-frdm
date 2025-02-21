@@ -8,6 +8,7 @@ The following boards were tested in this release:
         * NXP i.MX 93 FRDM (imx93frdm)
         * NXP i.MX 91 FRDM (imx91frdm)
         * NXP i.MX 8M Plus FRDM (imx8mpfrdm)
+        * NXP i.MX 91 FRDM IMX91S (imx91frdmimx91s)
 
 
 Quick Start Guide
@@ -46,6 +47,9 @@ $: MACHINE=imx91frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/
 
 #For i.MX 8M Plus FRDM
 $: MACHINE=imx8mpfrdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx8mp
+
+#For i.MX91 FRDM-IMX91S
+$: MACHINE=imx91frdmimx91s DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx91s
 ```
 
 Run the command below to generate Yocto images:
@@ -61,7 +65,11 @@ imx-image-core       | core image with basic graphics and no multimedia
 imx-image-multimedia | image with multimedia and graphics
 imx-image-full       | image with multimedia and machine learning and Qt
 
-
+For FRDM-IMX91S, there is an custom image imx-image-base for NAND flash and customers can customize it according to their requirements.
+To burn this single-boot image and rootfs to FlexSPI NAND, run the following command(refer to example_kernel_nand.uuu for details):
+```
+uuu example_kernel_nand.uuu
+```
 
 Create an SD Card on Linux Host:
 
@@ -146,6 +154,9 @@ $: MACHINE=imx91frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-im
 
 #For i.MX 8M Plus FRDM:
 $: MACHINE=imx8mpfrdm-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx8mpfrdm
+
+#For i.MX91 FRDM-IMX91S:
+$: MACHINE=imx91frdmimx91s-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-frdmimx91s
 ```
 
 Run the command below to generate Yocto images:
