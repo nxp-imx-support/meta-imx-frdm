@@ -7,6 +7,16 @@ SRC_URI = "${IMX_FIRMWARE_SRC};branch=${SRCBRANCH}"
 SRCBRANCH = "lf-6.6.52_2.2.0"
 SRCREV = "2978f3c88d6bcc5695a7b45f1936f18d31eebfa8"
 
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
+
+SRC_URI += "file://0001-FwImage-update-firmware-to-mxm18505.p14.patch"
+
+do_patch() {
+    cp ${WORKDIR}/0001-FwImage-update-firmware-to-mxm18505.p14.patch ${WORKDIR}/git/
+    cd ${WORKDIR}/git/
+    git apply 0001-FwImage-update-firmware-to-mxm18505.p14.patch
+}
+
 do_install() {
     install -d ${D}${nonarch_base_libdir}/firmware/nxp
     oe_runmake install INSTALLDIR=${D}${nonarch_base_libdir}/firmware/nxp
@@ -18,10 +28,18 @@ FILES:${PN}-nxp8997-common = " \
     ${nonarch_base_libdir}/firmware/nxp/uart8997_bt_v4.bin \
 "
 
+FILES:${PN}-nxp8997-sdio = " \
+    ${nonarch_base_libdir}/firmware/nxp/sd*8997* \
+"
+
 FILES:${PN}-nxp9098-common = " \
     ${nonarch_base_libdir}/firmware/nxp/ed_mac_ctrl_V3_909x.conf \
     ${nonarch_base_libdir}/firmware/nxp/txpwrlimit_cfg_9098.conf \
     ${nonarch_base_libdir}/firmware/nxp/uart9098_bt_v1.bin \
+"
+
+FILES:${PN}-nxp9098-sdio = " \
+    ${nonarch_base_libdir}/firmware/nxp/sd*9098* \
 "
 
 FILES:${PN}-nxpiw610-sdio += " \

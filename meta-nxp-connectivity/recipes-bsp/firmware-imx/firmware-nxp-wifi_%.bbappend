@@ -20,6 +20,13 @@ SRC_URI += "file://IW610-Q4-24-R3-p43/uartspi_iw610.bin.se"
 SRC_URI += "file://IW610-Q4-24-R3-p43/sduartspi_iw610.bin.se"
 SRC_URI += "file://0001-Add-IW610-15.4-firmware-calibration-file-and-use-it-.patch"
 
+#Overriding do_patch defined in meta-imx-bsp/recipes-bsp/firmware-imx/firmware-nxp-wifi_%.bbappend
+do_patch() {
+    cp ${WORKDIR}/0001-Add-IW610-15.4-firmware-calibration-file-and-use-it-.patch ${WORKDIR}/git/
+    cd ${WORKDIR}/git/
+    git apply 0001-Add-IW610-15.4-firmware-calibration-file-and-use-it-.patch
+}
+
 do_install:prepend() {
     rm -f ${S}/nxp/FwImage_IW612_SD/*
     cp ${WORKDIR}/IW612-Q3-24-R4/sduart_nw61x_v1.bin.se ${S}/nxp/FwImage_IW612_SD
