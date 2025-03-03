@@ -1,0 +1,31 @@
+From e7bfd2d98021a637b3e72478f59247269d5ae854 Mon Sep 17 00:00:00 2001
+From: Sherry Sun <sherry.sun@nxp.com>
+Date: Thu, 16 Jan 2025 13:51:14 +0800
+Subject: [PATCH 2/2] Makefile: remove script related setting to avoid build
+ break
+
+Since the load and unload scripts have been removed in mxm6x18505.p14
+release, need to change the Makefile accordingly to avoid the build
+break.
+
+Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+---
+ Makefile | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 9167e3a..a90ddda 100644
+--- a/Makefile
++++ b/Makefile
+@@ -650,8 +650,6 @@ build:		echo default
+ 	cp -f mlan.$(MODEXT) $(BINDIR)/mlan$(DBG).$(MODEXT)
+ 
+ 	cp -f moal.$(MODEXT) $(BINDIR)/moal$(DBG).$(MODEXT)
+-	cp -rpf script/load $(BINDIR)/
+-	cp -rpf script/unload $(BINDIR)/
+ 
+ 	cp -f README $(BINDIR)
+ 
+-- 
+2.25.1
+
