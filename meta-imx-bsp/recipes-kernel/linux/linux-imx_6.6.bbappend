@@ -21,4 +21,15 @@ SRC_URI += " \
         file://0018-arm64-dts-add-imx91-11x11-frdm-8mic.dts-and-fix-imx9.patch \
         file://0019-arm64-dts-add-imx91-11x11-frdm-lpuart.dts.patch \
         file://0020-LF-13459-clk-imx-Fix-the-pll-power-up-flow.patch \
+        file://0021-thermal-imx91-bug-fix-Temperature-read-returns-Resou.patch \
+        file://0022-LF-14498-arm64-dts-imx91-Correct-ENET1_TD3-and-I2C2_.patch \
+        file://0023-arm64-dts-Add-i.MX8MP-FRDM-board-support.patch \
+        file://0024-arm64-dts-add-os08a20-device-node-for-i.MX8MP-FRDM-b.patch \
+        file://0025-arm64-dts-add-dual-BOE-EV121WXM-N10-1850-LVDS-panel-.patch \
+        file://0026-arm64-dts-imx8mp-frdm-add-dual-os08a20-sensors-for-i.patch \
+        file://0027-arm64-dts-imx8mp-frdm-add-AP1302-support.patch \
+        file://0028-arm64-dts-imx8mp-frdm-add-dual-AP1302-support.patch \
+        file://0029-arm64-dts-imx8mp-frdm-add-imx8mp-frdm-8mic.dts.patch \
+        file://0030-arm64-dts-imx8mp-frdm-enable-7inch-waveshare-panel.patch \
+        file://0031-arm64-dts-imx8mp-frdm-add-imx8mp-frdm-rpmsg.dts.patch \
 "
