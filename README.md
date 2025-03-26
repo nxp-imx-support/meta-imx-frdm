@@ -7,6 +7,7 @@ The following boards were tested in this release:
 
         * NXP i.MX 93 FRDM (imx93frdm)
         * NXP i.MX 91 FRDM (imx91frdm)
+        * NXP i.MX 8MPlus FRDM (imx8mpfrdm)
 
 
 Quick Start Guide
@@ -30,9 +31,9 @@ If errors on repo init, remove the .repo directory and try repo init again.
 
 #Integrate meta-imx-frdm recipes into the Yocto code base:
 $: cd ./sources
-$: git clone https://github.com/nxp-imx-support/meta-imx-frdm.git
+$: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-2.0
+$: git checkout imx-frdm-3.0-rc1
 ```
 
 Change to the top directory of the Yocto source code and execute the command below to setup environment for build.
@@ -42,6 +43,9 @@ $: MACHINE=imx93frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/
 
 #For i.MX91 FRDM
 $: MACHINE=imx91frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx91
+
+#For i.MX 8MPlus FRDM
+$: MACHINE=imx8mpfrdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx8mp
 ```
 
 Run the command below to generate Yocto images:
@@ -125,9 +129,9 @@ $: git checkout imx_matter_2024_q3
 
 #Integrate meta-imx-frdm recipes into the Yocto code base:
 $: cd ${MY_YOCTO}/sources
-$: git clone https://github.com/nxp-imx-support/meta-imx-frdm.git
+$: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-2.0
+$: git checkout imx-frdm-3.0-rc1
 ```
 
 Run i.MX Linux Yocto Project Setup:
@@ -139,6 +143,9 @@ $: MACHINE=imx93frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-im
 
 #For i.MX91 FRDM:
 $: MACHINE=imx91frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx91
+
+#For i.MX 8MPlus FRDM:
+$: MACHINE=imx8mpfrdm-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx8mpfrdm
 ```
 
 Run the command below to generate Yocto images:
