@@ -32,4 +32,15 @@ SRC_URI += " \
         file://0029-arm64-dts-imx8mp-frdm-add-imx8mp-frdm-8mic.dts.patch \
         file://0030-arm64-dts-imx8mp-frdm-enable-7inch-waveshare-panel.patch \
         file://0031-arm64-dts-imx8mp-frdm-add-imx8mp-frdm-rpmsg.dts.patch \
+        file://0032-arm64-dts-imx8mp-frdm-using-green-led-instead-of-blu.patch \
+        file://0033-arm64-dts-imx8mp-frdm-fix-wifi-reset-pin.patch \
+        file://0034-arm64-dts-imx8mp-frdm-clean-imx8mp-frdm.dts.patch \
+        file://0035-arm64-dts-imx8mp-frdm-fix-interrupt-pin-in-imx8mp-fr.patch \
+        file://0036-Revert-commit-e85faa36ec41d8304a4f0123d6152274595f1e.patch \
+        file://0037-arm64-dts-imx8mp-frdm-add-AP1302-support-instead-of-.patch \
+        file://0038-arm64-dts-imx8mp-frdm-add-rpmsg-audio-support.patch \
+        file://0039-drm-panel-panel-waveshare-dsi-Add-bridge-and-connect.patch \
+        file://0040-arm64-dts-imx8mp-frdm-update-waveshare-panel-node.patch \
+        file://0041-drm-panel-remove-wavesahre-node-in-simple-panel.patch \
+        file://0042-arm64-dts-imx8mp-frdm-add-imx8mp-frdm-iw612-otbr-dts.patch \
 "
