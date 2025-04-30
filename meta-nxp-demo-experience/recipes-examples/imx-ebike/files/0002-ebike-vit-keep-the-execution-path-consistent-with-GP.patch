@@ -1,0 +1,27 @@
+From 97743e3dc15aaf368c65176e3172c2a84f1a30ad Mon Sep 17 00:00:00 2001
+From: Lei Xu <lei.xu@nxp.com>
+Date: Thu, 8 May 2025 15:50:48 +0800
+Subject: [PATCH 2/2] ebike-vit: keep the execution path consistent with
+ GPNT_APPS_FOLDER
+
+Signed-off-by: Lei Xu <lei.xu@nxp.com>
+---
+ misc/scripts/vit-notify/WWCommandNotify | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/misc/scripts/vit-notify/WWCommandNotify b/misc/scripts/vit-notify/WWCommandNotify
+index a44af48..60368b3 100755
+--- a/misc/scripts/vit-notify/WWCommandNotify
++++ b/misc/scripts/vit-notify/WWCommandNotify
+@@ -20,7 +20,7 @@ if __name__ == "__main__":
+ 
+     elif sys.argv[2] == '3':
+         if os.system("ps -a | grep \"ebike-vit-gui\" ") != 0:
+-            os.system("/opt/gopoint-apps/scripts/multimedia/ebike-vit-gui/ebike-vit-gui & ")
++            os.system("/opt/gopoint-apps/scripts/multimedia/ebike-vit/ebike-vit-gui & ")
+     else:
+         mq.send(params)
+ 
+-- 
+2.25.1
+

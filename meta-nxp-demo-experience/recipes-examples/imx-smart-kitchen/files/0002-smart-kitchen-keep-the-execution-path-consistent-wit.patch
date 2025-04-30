@@ -1,0 +1,27 @@
+From 9872b87f595400ca821970c6379417bcb02d8594 Mon Sep 17 00:00:00 2001
+From: Lei Xu <lei.xu@nxp.com>
+Date: Thu, 8 May 2025 15:44:52 +0800
+Subject: [PATCH 2/2] smart-kitchen: keep the execution path consistent with
+ GPNT_APPS_FOLDER
+
+Signed-off-by: Lei Xu <lei.xu@nxp.com>
+---
+ misc/scripts/vit-notify/WWCommandNotify | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/misc/scripts/vit-notify/WWCommandNotify b/misc/scripts/vit-notify/WWCommandNotify
+index f93bd2d..74ef775 100755
+--- a/misc/scripts/vit-notify/WWCommandNotify
++++ b/misc/scripts/vit-notify/WWCommandNotify
+@@ -20,7 +20,7 @@ if __name__ == "__main__":
+ 
+     elif sys.argv[2] == '3':
+         if os.system("ps -a | grep \"smart-kitchen-gui\" ") != 0:
+-            os.system("/home/root/.nxp-demo-experience/scripts/multimedia/smart-kitchen/smart-kitchen-gui & ")
++            os.system("/opt/gopoint-apps/scripts/multimedia/smart-kitchen/smart-kitchen-gui & ")
+     else:
+         mq.send(params)
+ 
+-- 
+2.25.1
+
