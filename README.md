@@ -7,7 +7,7 @@ The following boards were tested in this release:
 
         * NXP i.MX 93 FRDM (imx93frdm)
         * NXP i.MX 91 FRDM (imx91frdm)
-        * NXP i.MX 8MPlus FRDM (imx8mpfrdm)
+        * NXP i.MX 8M Plus FRDM (imx8mpfrdm)
 
 
 Quick Start Guide
@@ -33,7 +33,7 @@ If errors on repo init, remove the .repo directory and try repo init again.
 $: cd ./sources
 $: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-3.0-rc1
+$: git checkout imx-frdm-3.0
 ```
 
 Change to the top directory of the Yocto source code and execute the command below to setup environment for build.
@@ -44,7 +44,7 @@ $: MACHINE=imx93frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/
 #For i.MX91 FRDM
 $: MACHINE=imx91frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx91
 
-#For i.MX 8MPlus FRDM
+#For i.MX 8M Plus FRDM
 $: MACHINE=imx8mpfrdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx8mp
 ```
 
@@ -131,7 +131,7 @@ $: git checkout imx_matter_2024_q3
 $: cd ${MY_YOCTO}/sources
 $: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-3.0-rc1
+$: git checkout imx-frdm-3.0
 ```
 
 Run i.MX Linux Yocto Project Setup:
@@ -144,7 +144,7 @@ $: MACHINE=imx93frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-im
 #For i.MX91 FRDM:
 $: MACHINE=imx91frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx91
 
-#For i.MX 8MPlus FRDM:
+#For i.MX 8M Plus FRDM:
 $: MACHINE=imx8mpfrdm-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx8mpfrdm
 ```
 
