@@ -5,10 +5,10 @@ This repository contains Yocto recipes to support i.MX FRDM boards, which is bas
 
 The following boards were tested in this release:
 
-        * NXP i.MX 93 FRDM (imx93frdm)
-        * NXP i.MX 91 FRDM (imx91frdm)
-        * NXP i.MX 8M Plus FRDM (imx8mpfrdm)
-        * NXP i.MX 91 FRDM IMX91S (imx91frdmimx91s)
+        * FRDM-IMX93 (FRDM i.MX 93 Development Board)
+        * FRDM-IMX91 (FRDM i.MX 91 Development Board)
+        * FRDM-IMX91S (FRDM i.MX 91S Development Board)
+        * FRDM-IMX8MPLUS (FRDM i.MX 8M Plus Development Board)
 
 
 Quick Start Guide
@@ -39,16 +39,16 @@ $: git checkout imx-frdm-3.0
 
 Change to the top directory of the Yocto source code and execute the command below to setup environment for build.
 ```
-#For i.MX93 FRDM
+#For FRDM-IMX93
 $: MACHINE=imx93frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx93
 
-#For i.MX91 FRDM
+#For FRDM-IMX91
 $: MACHINE=imx91frdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx91
 
-#For i.MX 8M Plus FRDM
+#For FRDM-IMX8MPLUS
 $: MACHINE=imx8mpfrdm DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx8mp
 
-#For i.MX91 FRDM-IMX91S
+#For FRDM-IMX91S
 $: MACHINE=imx91frdmimx91s DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-setup.sh -b frdm-imx91s
 ```
 
@@ -146,16 +146,16 @@ Run i.MX Linux Yocto Project Setup:
 Change the current directory to the top directory of the Yocto source code and execute the command below:
 
 ```
-#For i.MX93 FRDM:
+#For FRDM-IMX93:
 $: MACHINE=imx93frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx93
 
-#For i.MX91 FRDM:
+#For FRDM-IMX91:
 $: MACHINE=imx91frdm-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx91
 
-#For i.MX 8M Plus FRDM:
+#For FRDM-IMX8MPLUS:
 $: MACHINE=imx8mpfrdm-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-imx8mpfrdm
 
-#For i.MX91 FRDM-IMX91S:
+#For FRDM-IMX91S:
 $: MACHINE=imx91frdmimx91s-iwxxx-matter DISTRO=fsl-imx-xwayland source sources/meta-imx-frdm/tools/imx-frdm-matter-setup.sh bld-xwayland-frdmimx91s
 ```
 
