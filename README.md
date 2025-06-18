@@ -34,7 +34,7 @@ If errors on repo init, remove the .repo directory and try repo init again.
 $: cd ./sources
 $: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-3.0
+$: git checkout imx-frdm-4.0
 ```
 
 Change to the top directory of the Yocto source code and execute the command below to setup environment for build.
@@ -139,7 +139,7 @@ $: git checkout imx_matter_2024_q3
 $: cd ${MY_YOCTO}/sources
 $: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
 $: cd meta-imx-frdm
-$: git checkout imx-frdm-3.0
+$: git checkout imx-frdm-4.0
 ```
 
 Run i.MX Linux Yocto Project Setup:
