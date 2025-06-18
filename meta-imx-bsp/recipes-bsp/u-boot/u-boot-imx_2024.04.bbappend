@@ -9,6 +9,7 @@ SRC_URI += " \
         file://0006-imx-FRDM-IMX8MP-Use-green-led-instead-of-blue.patch \
         file://0007-imx-imx91_frdm_imx91s-Add-basic-board-support.patch \
         file://0008-imx-imx91_frdm_imx91s-Add-SPI-NAND-boot-support.patch \
+        file://0009-arm-dts-frdm-imx91s-remove-duplicated-reg.patch \
 "
 
 SRC_URI += "${@bb.utils.contains_any('MACHINE', "imx8mpfrdm", 'file://uboot-config/0001-imx8mp-set-os08a20-dtb.cfg', '', d)}"

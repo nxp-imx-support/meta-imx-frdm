@@ -1,0 +1,45 @@
+From 96fd5c292ebc2f7639984af99176b09faef1c5eb Mon Sep 17 00:00:00 2001
+From: Joseph Guo <qijian.guo@nxp.com>
+Date: Tue, 17 Jun 2025 17:59:37 +0900
+Subject: [PATCH] arm: dts: frdm-imx91s: remove duplicated reg
+
+Remove duplicated reg_ext_3v3 and reg_ext_5v node
+
+Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
+
+diff --git a/arch/arm/dts/imx91-11x11-frdm-imx91s.dts b/arch/arm/dts/imx91-11x11-frdm-imx91s.dts
+index 526a957b64b..f36be16e0ec 100644
+--- a/arch/arm/dts/imx91-11x11-frdm-imx91s.dts
++++ b/arch/arm/dts/imx91-11x11-frdm-imx91s.dts
+@@ -113,28 +113,6 @@
+ 		enable-active-high;
+ 	};
+ 
+-	reg_exp8_3v3: regulator-exp8-3.3 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "exp8_3.3V";
+-		gpio = <&pcal6524 8 GPIO_ACTIVE_HIGH>;
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		enable-active-high;
+-		regulator-boot-on;
+-		regulator-always-on;
+-	};
+-
+-	reg_exp9: regulator-exp9-3.3 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "exp9_3.3V";
+-		gpio = <&pcal6524 9 GPIO_ACTIVE_HIGH>;
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		enable-active-high;
+-		regulator-boot-on;
+-		regulator-always-on;
+-	};
+-
+ 	reg_clken: regulator-clken-3.3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "clken_3.3V";
+-- 
+2.25.1
+
