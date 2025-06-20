@@ -32,7 +32,7 @@ If errors on repo init, remove the .repo directory and try repo init again.
 
 #Integrate meta-imx-frdm recipes into the Yocto code base:
 $: cd ./sources
-$: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
+$: git clone https://github.com/nxp-imx-support/meta-imx-frdm.git
 $: cd meta-imx-frdm
 $: git checkout imx-frdm-4.0
 ```
@@ -137,7 +137,7 @@ $: git checkout imx_matter_2024_q3
 
 #Integrate meta-imx-frdm recipes into the Yocto code base:
 $: cd ${MY_YOCTO}/sources
-$: git clone ssh://git@bitbucket.sw.nxp.com/mpucnse/meta-imx-frdm.git
+$: git clone https://github.com/nxp-imx-support/meta-imx-frdm.git
 $: cd meta-imx-frdm
 $: git checkout imx-frdm-4.0
 ```
